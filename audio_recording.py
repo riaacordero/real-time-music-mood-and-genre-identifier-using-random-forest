@@ -2,7 +2,7 @@ import sounddevice as sd
 import numpy as np
 from model import load_trained_model, extract_features
 
-def record_audio(duration=8, sr=22050):
+def record_audio(duration=15, sr=22050):
     print(f"Recording {duration} seconds of audio...")
     audio = sd.rec(int(duration * sr), samplerate=sr, channels=1)
     sd.wait()
@@ -16,7 +16,7 @@ def main():
         return
 
     # Record audio
-    audio_data = record_audio(duration=8)  # Duration in seconds
+    audio_data = record_audio(duration=15)  # Duration in seconds
     features = extract_features(audio_data)
 
     # Make prediction
