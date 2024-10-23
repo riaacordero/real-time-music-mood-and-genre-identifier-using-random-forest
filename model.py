@@ -47,3 +47,16 @@ features, labels = load_dataset()
 
 print("Features shape:", features.shape)
 print("Labels shape:", labels.shape)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
+
+with tqdm.tqdm(total=100, desc="Training Model") as pbar:
+    # Train a Random Forest Classifier
+    clf = RandomForestClassifier()
+    clf.fit(X_train, y_train)
+    pbar.update(100)
+
+# Evaluate the model
+y_pred = clf.predict(X_test)
+print(classification_report(y_test, y_pred))
